@@ -1,21 +1,21 @@
 # 💤 LazyVim + VSCode-Neovim Hybrid Configuration
 
 A dual-purpose Neovim configuration:
+
 - **VSCode Mode**: Lightweight config with essential Vim motions and keybindings
 - **Standalone Mode**: Full LazyVim experience with all plugins
 
-## 🎯 What This Provides
+## What This Provides
 
 **VSCode Integration:**
+
 - Space leader key with LazyVim-style bindings
 - Fast navigation (`leap.nvim`, `flash.nvim`)
 - Text object manipulation (`nvim-surround`)
 - Window navigation (`<leader>h/j/k/l`)
 - File operations (`<leader>e`, `<leader>p`, `<leader>w`)
 
-**Works with:** [VSCode Settings Repository](https://github.com/jbb-codes/vscode-config) for complete VSCode configuration.
-
-> **🎯 Want the Full Setup?** This Neovim configuration is part of a complete VSCode + Neovim development environment. Check out the [VSCode Settings Repository](https://github.com/jbb-codes/vscode-config) for the full setup including custom themes, extensions, keybindings, and more!
+> **Want the Full Setup?** This Neovim configuration is part of a complete VSCode + Neovim development environment. Check out the [VSCode Settings Repository](https://github.com/jbb-codes/vscode-config) for the full setup including custom themes, extensions, keybindings, and more!
 
 ## 🚀 Installation & Setup
 
@@ -153,11 +153,13 @@ Choose the approach that best fits your current setup:
 #### Option 1: Full Integration (Recommended)
 
 **1. Backup your existing configuration:**
+
 ```bash
 cp -r ~/.config/nvim ~/.config/nvim.backup
 ```
 
 **2. Clone this repository:**
+
 ```bash
 cd ~/.config
 mv nvim nvim.old  # Move existing config
@@ -169,6 +171,7 @@ git submodule update --init --recursive
 ```
 
 **3. Migrate your existing customizations:**
+
 ```bash
 # Copy your existing LazyVim customizations
 cp -r ~/.config/nvim.old/lua/plugins/* ~/.config/nvim/lua/plugins/ 2>/dev/null || true
@@ -183,18 +186,19 @@ cp ~/.config/nvim.old/lazy-lock.json ~/.config/nvim/ 2>/dev/null || true
 If you want to keep your existing Neovim setup and only add VSCode support:
 
 **1. Add conditional loading to your existing `init.lua`:**
+
 ```lua
 -- Add this at the top of your existing ~/.config/nvim/init.lua
 if vim.g.vscode then
     -- VSCode-specific setup
-    
+
     -- Load VSCode plugins from pack directory
     vim.cmd('set packpath^=~/.config/nvim')
-    
+
     -- Setup VSCode-specific plugins
     require("leap").set_default_mappings()
     require("nvim-surround").setup()
-    
+
     -- Load VSCode-specific keymaps
     if pcall(require, "vscode-neovim.vscode_keymaps") then
         -- Keymaps loaded successfully
@@ -202,7 +206,7 @@ if vim.g.vscode then
         -- Fallback: create the file or use inline keymaps
         vim.g.mapleader = ' '
         local keymap = vim.keymap.set
-        
+
         -- Essential VSCode keymaps
         keymap("n", "<leader>e", "<cmd>lua require('vscode').action('workbench.view.explorer')<CR>")
         keymap("n", "<leader>p", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
@@ -211,7 +215,7 @@ if vim.g.vscode then
         keymap("n", "<leader>l", "<cmd>lua require('vscode').action('workbench.action.navigateRight')<CR>")
         -- Add more keymaps as needed
     end
-    
+
     -- Don't load the rest of your config in VSCode
     return
 end
@@ -221,6 +225,7 @@ end
 ```
 
 **2. Add VSCode plugins as git submodules:**
+
 ```bash
 cd ~/.config/nvim
 
@@ -237,11 +242,13 @@ git submodule update --init --recursive
 ```
 
 **3. Create VSCode-specific keymaps file:**
+
 ```bash
 mkdir -p ~/.config/nvim/lua/vscode-neovim
 ```
 
 Then copy the keymaps from this repository:
+
 ```bash
 # Copy from this repo or create manually
 cp <path-to-this-repo>/lua/vscode-neovim/vscode_keymaps.lua ~/.config/nvim/lua/vscode-neovim/
@@ -303,6 +310,7 @@ cp keybindings.json "~/Library/Application Support/Code/User/"
 ```
 
 **Verify paths in VSCode settings:**
+
 ```json
 {
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
@@ -313,11 +321,13 @@ cp keybindings.json "~/Library/Application Support/Code/User/"
 ## 🧪 Testing
 
 **Test standalone Neovim:**
+
 ```bash
 nvim  # Should load normal LazyVim config
 ```
 
 **Test VSCode integration:**
+
 - Open VSCode with a file
 - Try `Space + e` (toggle explorer)
 - Try `Space + p` (quick open)
@@ -343,13 +353,14 @@ K                -- Hover info
 Edit `lua/vscode-neovim/vscode_keymaps.lua`:
 
 ```lua
-keymap("n", "<leader>custom", 
+keymap("n", "<leader>custom",
   "<cmd>lua require('vscode').action('your.command')<CR>")
 ```
 
 ## 🐛 Troubleshooting
 
 **VSCode not finding Neovim:**
+
 ```bash
 # Verify installation
 nvim --version
@@ -359,14 +370,16 @@ which nvim
 ```
 
 **Keybindings not working:**
+
 - Ensure vscode-neovim extension is enabled
 - Check VSCode keybindings for conflicts
 - Verify init.lua is loading correctly
 
 **Plugins not loading:**
+
 - Update git submodules: `git submodule update --init --recursive`
 - Check VSCode Output panel for errors
 
 ---
 
-*This configuration provides the best of both worlds: powerful Vim motions in VSCode and a full-featured Neovim setup for terminal use.*
+_This configuration provides the best of both worlds: powerful Vim motions in VSCode and a full-featured Neovim setup for terminal use._
