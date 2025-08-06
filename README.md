@@ -59,6 +59,31 @@ else
 end
 ```
 
+## VSCode Keymaps File
+
+The `lua/vscode-neovim/vscode_keymaps.lua` file contains VSCode-specific keybindings and should be placed in your Neovim configuration directory structure as shown above.
+
+### File Location
+```
+~/.config/nvim/lua/vscode-neovim/vscode_keymaps.lua
+```
+
+### Loading in init.lua
+
+The keymaps are loaded using Lua's `require()` function when VSCode is detected:
+
+```lua
+if vim.g.vscode then
+    -- Load VSCode-specific keymaps
+    require("vscode-neovim.vscode_keymaps")
+end
+```
+
+This corresponds to the file path `lua/vscode-neovim/vscode_keymaps.lua` where:
+- `vscode-neovim` is the directory name
+- `vscode_keymaps` is the filename (without `.lua` extension)
+- The dot notation `vscode-neovim.vscode_keymaps` represents the path
+
 ## Usage Examples
 
 - `cs"'` - Change surrounding quotes
