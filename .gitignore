@@ -1,0 +1,19 @@
+# LazyVim generated files
+lazy-lock.json
+lazyvim.json
+
+# LazyVim configuration directories
+lua/config/
+lua/plugins/
+
+# Neovim cache and data
+.neoconf.json
+
+# Formatting config
+stylua.toml
+
+# License file
+LICENSE
+
+# VSCode workspace settings (optional - uncomment if you don't want to track)
+.vscode/
