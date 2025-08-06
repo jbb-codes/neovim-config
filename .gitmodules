@@ -1,0 +1,9 @@
+[submodule "pack/vscode-plugins/start/leap.nvim"]
+	path = pack/vscode-plugins/start/leap.nvim
+	url = https://github.com/ggandor/leap.nvim.git
+[submodule "pack/vscode-plugins/start/nvim-surround"]
+	path = pack/vscode-plugins/start/nvim-surround
+	url = https://github.com/kylechui/nvim-surround.git
+[submodule "pack/vscode-plugins/start/flash.nvim"]
+	path = pack/vscode-plugins/start/flash.nvim
+	url = https://github.com/folke/flash.nvim.git
